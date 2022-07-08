@@ -1,0 +1,13 @@
+# Use postgres/example user/password credentials
+version: '3'
+
+services:
+  db:
+    image: postgres
+    container_name: postgres-db
+    environment:
+      POSTGRES_PASSWORD: "soccerapp"
+    ports:
+      - "15432:5432"
+    volumes:
+      - $HOME/docker/volumes/postgres:/var/lib/postgresql/data
