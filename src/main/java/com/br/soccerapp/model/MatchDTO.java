@@ -12,6 +12,8 @@ public class MatchDTO {
 
     @Id
     private String id;
+    @ManyToOne
+    @JoinColumn(name = "league_id")
     private LeagueDTO league;
     @ManyToOne
     @JoinColumn(name = "team_home")
