@@ -17,6 +17,8 @@ public class GoalsDTO {
     @ManyToOne
     @JoinColumn(name = "team_id")
     private TeamDTO team;
-    private String author;
+    @ManyToOne
+    @JoinColumn(name = "player_id")
+    private PlayerDTO player;
     private Integer quantities;
 }

@@ -23,5 +23,5 @@ public class MatchDTO {
     private TeamDTO teamVisitor;
     @OneToMany
     @JoinColumn(name = "goals_id")
-    private Integer goals;
+    private GoalsDTO goals;
 }
