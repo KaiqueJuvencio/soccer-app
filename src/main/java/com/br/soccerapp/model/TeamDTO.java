@@ -2,9 +2,7 @@ package com.br.soccerapp.model;
 
 import lombok.Data;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "TEAM")
@@ -12,6 +10,10 @@ import javax.persistence.Table;
 public class TeamDTO {
 
     @Id
+    @GeneratedValue
     private String id;
     private String name;
+    @ManyToOne
+    @JoinColumn(name = "league_id")
+    private LeagueDTO league;
 }
