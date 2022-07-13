@@ -21,5 +21,7 @@ public class MatchDTO {
     @ManyToOne
     @JoinColumn(name = "team_visitor")
     private TeamDTO teamVisitor;
+    @OneToMany
+    @JoinColumn(name = "goals_id")
     private Integer goals;
 }
