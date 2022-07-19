@@ -15,13 +15,10 @@ public class MatchDTO {
     @ManyToOne
     @JoinColumn(name = "league_id")
     private LeagueDTO league;
-    @ManyToOne
+    @OneToOne
     @JoinColumn(name = "team_home")
     private TeamDTO teamHome;
-    @ManyToOne
+    @OneToOne
     @JoinColumn(name = "team_visitor")
     private TeamDTO teamVisitor;
-    @OneToMany
-    @JoinColumn(name = "goals_id")
-    private GoalsDTO goals;
 }

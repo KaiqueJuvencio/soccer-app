@@ -2,9 +2,7 @@ package com.br.soccerapp.model;
 
 import lombok.Data;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.time.LocalDateTime;
 
 @Entity
@@ -13,7 +11,15 @@ import java.time.LocalDateTime;
 public class LeagueDTO {
 
     @Id
-    private String id;
+    @GeneratedValue(strategy= GenerationType.AUTO)
+    private Long id;
     private String name;
     private LocalDateTime startDate;
+
+    public LeagueDTO(String name) {
+        this.name = name;
+        this.startDate = LocalDateTime.now();
+    }
+    public LeagueDTO() {
+    }
 }
