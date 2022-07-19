@@ -1,5 +1,6 @@
 package com.br.soccerapp.controller;
 
+import com.br.soccerapp.model.LeagueDTO;
 import com.br.soccerapp.service.LeagueService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -20,6 +21,12 @@ public class LeagueController {
     @PostMapping("/{name}")
     public ResponseEntity<Object> create(@PathVariable String name){
         leagueService.create(name);
+        return ResponseEntity.ok("");
+    }
+
+    @PutMapping()
+    public ResponseEntity<Object> update(@RequestBody LeagueDTO league){
+        leagueService.update(league);
         return ResponseEntity.ok("");
     }
 
