@@ -22,4 +22,10 @@ public class LeagueController {
         leagueService.create(name);
         return ResponseEntity.ok("");
     }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Object> delete(@PathVariable Long id){
+        leagueService.delete(id);
+        return ResponseEntity.ok("");
+    }
 }
