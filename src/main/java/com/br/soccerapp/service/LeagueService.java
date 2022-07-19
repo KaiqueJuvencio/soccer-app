@@ -5,11 +5,17 @@ import com.br.soccerapp.repository.LeagueRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class LeagueService {
 
     @Autowired
     LeagueRepository leagueRepository;
+
+    public List<LeagueDTO> list(){
+        return leagueRepository.findAll();
+    }
 
     public LeagueDTO create(String name){
         LeagueDTO league = new LeagueDTO(name);

@@ -20,4 +20,6 @@ public class LeagueDTO {
         this.name = name;
         this.startDate = LocalDateTime.now();
     }
+    public LeagueDTO() {
+    }
 }
