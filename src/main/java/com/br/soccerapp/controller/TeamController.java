@@ -22,4 +22,10 @@ public class TeamController {
         teamService.create(name, leagueId);
         return ResponseEntity.ok("");
     }
+
+    @PutMapping("/{name}/{teamId}")
+    public ResponseEntity<Object> update(@PathVariable String name, @PathVariable Long teamId){
+        teamService.update(name, teamId);
+        return ResponseEntity.ok("");
+    }
 }

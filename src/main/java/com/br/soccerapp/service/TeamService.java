@@ -33,4 +33,14 @@ public class TeamService {
             throw new RuntimeException();
         }
     }
+
+    public void update(String name, Long teamId){
+        Optional<TeamDTO> team = teamRepository.findById(teamId);
+        if(team.isPresent()){
+            team.get().setName(name);
+            teamRepository.save(team.get());
+        }else {
+            throw new RuntimeException();
+        }
+    }
 }
