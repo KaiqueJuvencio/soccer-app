@@ -10,7 +10,8 @@ import javax.persistence.*;
 public class GoalsDTO {
 
     @Id
-    private String id;
+    @GeneratedValue(strategy= GenerationType.AUTO)
+    private Long id;
     @ManyToOne
     @JoinColumn(name = "match_id")
     private MatchDTO match;

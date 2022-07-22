@@ -11,7 +11,8 @@ import java.time.LocalDateTime;
 public class StatisticsDTO {
 
     @Id
-    private String id;
+    @GeneratedValue(strategy= GenerationType.AUTO)
+    private Long id;
     @ManyToOne
     @OneToOne
     private LeagueDTO league;

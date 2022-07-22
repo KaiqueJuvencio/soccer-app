@@ -10,8 +10,8 @@ import javax.persistence.*;
 public class PlayerDTO {
 
     @Id
-    @GeneratedValue
-    private String id;
+    @GeneratedValue(strategy= GenerationType.AUTO)
+    private Long id;
     private String name;
     @OneToOne
     @JoinColumn(name = "team_id")
