@@ -43,4 +43,8 @@ public class TeamService {
             throw new RuntimeException();
         }
     }
+
+    public void delete(Long id){
+        teamRepository.deleteById(id);
+    }
 }

@@ -28,4 +28,10 @@ public class TeamController {
         teamService.update(name, teamId);
         return ResponseEntity.ok("");
     }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Object> delete(@PathVariable Long id){
+        teamService.delete(id);
+        return ResponseEntity.ok("");
+    }
 }
