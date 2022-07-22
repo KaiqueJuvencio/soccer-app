@@ -26,8 +26,12 @@ public class LeagueService {
     }
 
     public void update(LeagueDTO league){
-        league.setStartDate(LocalDateTime.now());
-        leagueRepository.save(league);
+        Optional<LeagueDTO> leagueResponse = leagueRepository.findById(league.getId());
+        if(leagueResponse.isPresent()){
+            leagueResponse.get().setName(league.getName());
+            leagueResponse.get().setStartDate(LocalDateTime.now());
+            leagueRepository.save(leagueResponse.get());
+        }
     }
 
     public void delete(Long id){
