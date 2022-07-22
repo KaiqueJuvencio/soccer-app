@@ -12,6 +12,11 @@ public class TeamController {
     @Autowired
     TeamService teamService;
 
+    @GetMapping()
+    public ResponseEntity<Object> list(){
+        return ResponseEntity.ok(teamService.list());
+    }
+
     @PostMapping("/{name}/{leagueId}")
     public ResponseEntity<Object> create(@PathVariable String name, @PathVariable Long leagueId){
         teamService.create(name, leagueId);

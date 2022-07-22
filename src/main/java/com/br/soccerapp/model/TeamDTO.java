@@ -21,4 +21,7 @@ public class TeamDTO {
         this.name = name;
         this.league = league;
     }
+
+    public TeamDTO() {
+    }
 }

@@ -20,6 +20,10 @@ public class TeamService {
     @Autowired
     LeagueRepository leagueRepository;
 
+    public List<TeamDTO> list(){
+        return teamRepository.findAll();
+    }
+
     public TeamDTO create(String name, Long leagueId){
         Optional<LeagueDTO> league = leagueRepository.findById(leagueId);
         if(league.isPresent()){
