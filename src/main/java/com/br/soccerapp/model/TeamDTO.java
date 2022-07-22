@@ -10,10 +10,15 @@ import javax.persistence.*;
 public class TeamDTO {
 
     @Id
-    @GeneratedValue
-    private String id;
+    @GeneratedValue(strategy= GenerationType.AUTO)
+    private Long id;
     private String name;
     @ManyToOne
     @JoinColumn(name = "league_id")
     private LeagueDTO league;
+
+    public TeamDTO(String name, LeagueDTO league) {
+        this.name = name;
+        this.league = league;
+    }
 }
