@@ -24,12 +24,12 @@ public class PlayerController {
         return ResponseEntity.ok("");
     }
 
-//    @PutMapping("/{name}/{teamId}")
-//    public ResponseEntity<Object> update(@PathVariable String name, @PathVariable Long teamId){
-//        teamService.update(name, teamId);
-//        return ResponseEntity.ok("");
-//    }
-//
+    @PutMapping("/{name}/{playerId}/{teamId}")
+    public ResponseEntity<Object> update(@PathVariable String name, @PathVariable Long playerId, @PathVariable Long teamId){
+        playerService.update(name, playerId, teamId);
+        return ResponseEntity.ok("");
+    }
+
 //    @DeleteMapping("/{id}")
 //    public ResponseEntity<Object> delete(@PathVariable Long id){
 //        teamService.delete(id);

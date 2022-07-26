@@ -35,11 +35,13 @@ public class PlayerService {
         }
     }
 
-    public void update(String name, Long teamId){
+    public void update(String name, Long playerId, Long teamId){
+        Optional<PlayerDTO> player = playerRepository.findById(playerId);
         Optional<TeamDTO> team = teamRepository.findById(teamId);
-        if(team.isPresent()){
-            team.get().setName(name);
-            teamRepository.save(team.get());
+        if(player.isPresent() && team.isPresent()){
+            player.get().setName(name);
+            player.get().setTeam(team.get());
+            playerRepository.save(player.get());
         }else {
             throw new RuntimeException();
         }
