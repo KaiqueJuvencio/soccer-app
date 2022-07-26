@@ -19,9 +19,9 @@ public class StatisticsController {
         return ResponseEntity.ok(statisticsService.list());
     }
 
-    @PostMapping("/{leagueId}/{teamId}")
-    public ResponseEntity<Object> create(@PathVariable Long leagueId, @PathVariable Long teamId){
-        statisticsService.create(leagueId, teamId);
+    @PostMapping("/{teamId}")
+    public ResponseEntity<Object> create(@PathVariable Long teamId){
+        statisticsService.create(teamId);
         return ResponseEntity.ok("");
     }
 

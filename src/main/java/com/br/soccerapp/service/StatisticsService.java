@@ -29,12 +29,11 @@ public class StatisticsService {
         return statisticsRepository.findAll();
     }
 
-    public StatisticsDTO create(Long leagueId, Long teamId){
-        Optional<LeagueDTO> league = leagueRepository.findById(leagueId);
+    public StatisticsDTO create(Long teamId){
         Optional<TeamDTO> team = teamRepository.findById(teamId);
 
-        if(league.isPresent() && team.isPresent()){
-            StatisticsDTO statisticsDTO = new StatisticsDTO(league.get(), team.get());
+        if(team.isPresent()){
+            StatisticsDTO statisticsDTO = new StatisticsDTO(team.get());
             return statisticsRepository.save(statisticsDTO);
         }else {
             throw new RuntimeException();
