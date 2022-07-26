@@ -21,8 +21,8 @@ public class PlayerService {
     @Autowired
     PlayerRepository playerRepository;
 
-    public List<TeamDTO> list(){
-        return teamRepository.findAll();
+    public List<PlayerDTO> list(){
+        return playerRepository.findAll();
     }
 
     public PlayerDTO create(String name, Long teamId){

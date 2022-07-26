@@ -13,10 +13,10 @@ public class PlayerController {
     @Autowired
     PlayerService playerService;
 
-//    @GetMapping()
-//    public ResponseEntity<Object> list(){
-//        return ResponseEntity.ok(teamService.list());
-//    }
+    @GetMapping()
+    public ResponseEntity<Object> list(){
+        return ResponseEntity.ok(playerService.list());
+    }
 
     @PostMapping("/{name}/{teamId}")
     public ResponseEntity<Object> create(@PathVariable String name, @PathVariable Long teamId){
