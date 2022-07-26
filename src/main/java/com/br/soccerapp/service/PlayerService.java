@@ -48,6 +48,6 @@ public class PlayerService {
     }
 
     public void delete(Long id){
-        teamRepository.deleteById(id);
+        playerRepository.deleteById(id);
     }
 }
