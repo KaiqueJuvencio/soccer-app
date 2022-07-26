@@ -21,7 +21,11 @@ public class StatisticsDTO {
     private TeamDTO team;
     private Integer victories;
     private Integer defeats;
+    private Integer draws;
     private Integer goalDifference;
     private Integer points;
     private Integer matchesQuantities;
+
+    public StatisticsDTO() {
+    }
 }

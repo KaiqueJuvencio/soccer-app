@@ -16,4 +16,12 @@ public class PlayerDTO {
     @OneToOne
     @JoinColumn(name = "team_id")
     private TeamDTO team;
+
+    public PlayerDTO() {
+    }
+
+    public PlayerDTO(String name, TeamDTO team) {
+        this.name = name;
+        this.team = team;
+    }
 }
