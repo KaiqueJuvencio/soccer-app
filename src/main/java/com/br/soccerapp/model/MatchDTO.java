@@ -22,4 +22,7 @@ public class MatchDTO {
     @OneToOne
     @JoinColumn(name = "team_visitor")
     private TeamDTO teamVisitor;
+
+    public MatchDTO() {
+    }
 }

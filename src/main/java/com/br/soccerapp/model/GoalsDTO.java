@@ -22,4 +22,7 @@ public class GoalsDTO {
     @JoinColumn(name = "player_id")
     private PlayerDTO player;
     private Integer quantities;
+
+    public GoalsDTO() {
+    }
 }
