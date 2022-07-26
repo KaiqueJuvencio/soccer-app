@@ -14,10 +14,10 @@ public class StatisticsController {
     @Autowired
     StatisticsService statisticsService;
 
-//    @GetMapping()
-//    public ResponseEntity<Object> list(){
-//        return ResponseEntity.ok(teamService.list());
-//    }
+    @GetMapping()
+    public ResponseEntity<Object> list(){
+        return ResponseEntity.ok(statisticsService.list());
+    }
 
     @PostMapping("/{leagueId}/{teamId}")
     public ResponseEntity<Object> create(@PathVariable Long leagueId, @PathVariable Long teamId){

@@ -25,9 +25,9 @@ public class StatisticsService {
     @Autowired
     TeamRepository teamRepository;
 
-//    public List<TeamDTO> list(){
-//        return teamRepository.findAll();
-//    }
+    public List<StatisticsDTO> list(){
+        return statisticsRepository.findAll();
+    }
 
     public StatisticsDTO create(Long leagueId, Long teamId){
         Optional<LeagueDTO> league = leagueRepository.findById(leagueId);
