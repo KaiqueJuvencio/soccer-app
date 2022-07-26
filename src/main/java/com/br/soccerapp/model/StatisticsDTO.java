@@ -28,4 +28,15 @@ public class StatisticsDTO {
 
     public StatisticsDTO() {
     }
+
+    public StatisticsDTO(LeagueDTO league, TeamDTO team) {
+        this.league = league;
+        this.team = team;
+        this.defeats = 0;
+        this.victories = 0;
+        this.draws = 0;
+        this.goalDifference = 0;
+        this.points = 0;
+        this.matchesQuantities = 0;
+    }
 }
