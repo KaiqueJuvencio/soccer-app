@@ -25,11 +25,10 @@ public class StatisticsController {
         return ResponseEntity.ok("");
     }
 
-//    @PutMapping("/{name}/{teamId}")
-//    public ResponseEntity<Object> update(@PathVariable String name, @PathVariable Long teamId){
-//        teamService.update(name, teamId);
-//        return ResponseEntity.ok("");
-//    }
+    @PutMapping("/{teamId}/{statistic}")
+    public ResponseEntity<Object> update(@PathVariable Long teamId, @PathVariable String statistic){
+        return ResponseEntity.ok(statisticsService.update(teamId, statistic));
+    }
 //
 //    @DeleteMapping("/{id}")
 //    public ResponseEntity<Object> delete(@PathVariable Long id){

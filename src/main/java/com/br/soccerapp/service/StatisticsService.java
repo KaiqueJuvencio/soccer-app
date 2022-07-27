@@ -40,15 +40,29 @@ public class StatisticsService {
         }
     }
 
-//    public void update(String name, Long teamId){
-//        Optional<TeamDTO> team = teamRepository.findById(teamId);
-//        if(team.isPresent()){
-//            team.get().setName(name);
-//            teamRepository.save(team.get());
-//        }else {
-//            throw new RuntimeException();
-//        }
-//    }
+    public StatisticsDTO update(Long teamId, String statisticEnum){
+        Optional<TeamDTO> team = teamRepository.findById(teamId);
+        Optional<StatisticsDTO> statistic = statisticsRepository.findByTeam(team.get());
+        if(statistic.isPresent() && team.isPresent()){
+            statistic.get().setMatchesQuantities(statistic.get().getMatchesQuantities() + 1);
+            switch (statisticEnum){
+                case "victory":
+                    statistic.get().setVictories(statistic.get().getVictories() + 1);
+                    statistic.get().setPoints(statistic.get().getPoints() + 3);
+                    break;
+                case "defeat":
+                    statistic.get().setDefeats(statistic.get().getDefeats() + 1);
+                    break;
+                case "draw":
+                    statistic.get().setDraws(statistic.get().getDraws() + 1);
+                    statistic.get().setPoints(statistic.get().getPoints() + 1);
+                    break;
+            }
+            return statisticsRepository.save(statistic.get());
+        }else {
+            throw new RuntimeException();
+        }
+    }
 //
 //    public void delete(Long id){
 //        teamRepository.deleteById(id);
