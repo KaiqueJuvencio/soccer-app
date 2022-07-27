@@ -3,7 +3,6 @@ package com.br.soccerapp.model;
 import lombok.Data;
 
 import javax.persistence.*;
-import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "STATISTICS")
@@ -15,9 +14,6 @@ public class StatisticsDTO {
     private Long id;
     @ManyToOne
     @OneToOne
-    private LeagueDTO league;
-    @ManyToOne
-    @OneToOne
     private TeamDTO team;
     private Integer victories;
     private Integer defeats;
@@ -27,5 +23,15 @@ public class StatisticsDTO {
     private Integer matchesQuantities;
 
     public StatisticsDTO() {
+    }
+
+    public StatisticsDTO(TeamDTO team) {
+        this.team = team;
+        this.defeats = 0;
+        this.victories = 0;
+        this.draws = 0;
+        this.goalDifference = 0;
+        this.points = 0;
+        this.matchesQuantities = 0;
     }
 }
