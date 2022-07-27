@@ -9,6 +9,6 @@ import org.springframework.stereotype.Repository;
 import java.util.Optional;
 
 @Repository
-public interface StatisticsRepository extends JpaRepository<StatisticsDTO, String> {
+public interface StatisticsRepository extends JpaRepository<StatisticsDTO, Long> {
     public Optional<StatisticsDTO> findByTeam(TeamDTO team);
 }

@@ -29,10 +29,10 @@ public class StatisticsController {
     public ResponseEntity<Object> update(@PathVariable Long teamId, @PathVariable String statistic){
         return ResponseEntity.ok(statisticsService.update(teamId, statistic));
     }
-//
-//    @DeleteMapping("/{id}")
-//    public ResponseEntity<Object> delete(@PathVariable Long id){
-//        teamService.delete(id);
-//        return ResponseEntity.ok("");
-//    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Object> delete(@PathVariable Long id){
+        statisticsService.delete(id);
+        return ResponseEntity.ok("");
+    }
 }

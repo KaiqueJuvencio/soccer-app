@@ -63,8 +63,8 @@ public class StatisticsService {
             throw new RuntimeException();
         }
     }
-//
-//    public void delete(Long id){
-//        teamRepository.deleteById(id);
-//    }
+
+    public void delete(Long id){
+        statisticsRepository.deleteById(id);
+    }
 }
