@@ -27,9 +27,9 @@ public class MatchController {
         return ResponseEntity.ok("");
     }
 
-    @PutMapping("/{name}/{teamId}")
-    public ResponseEntity<Object> update(@PathVariable String name, @PathVariable Long teamId){
-        teamService.update(name, teamId);
+    @PutMapping("/{matchId}/{homeTeamId}/{awayTeamId}")
+    public ResponseEntity<Object> update(@PathVariable Long matchId, @PathVariable Long homeTeamId, @PathVariable Long awayTeamId){
+        matchService.update(matchId, homeTeamId, awayTeamId);
         return ResponseEntity.ok("");
     }
 

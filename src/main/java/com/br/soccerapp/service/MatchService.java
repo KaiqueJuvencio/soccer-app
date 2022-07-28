@@ -36,11 +36,14 @@ public class MatchService {
         }
     }
 
-    public void update(String name, Long teamId){
-        Optional<TeamDTO> team = teamRepository.findById(teamId);
-        if(team.isPresent()){
-            team.get().setName(name);
-            teamRepository.save(team.get());
+    public void update(Long matchId, Long homeTeamId, Long awayTeamId){
+        Optional<MatchDTO> match = matchRepository.findById(matchId);
+        Optional<TeamDTO> homeTeam = teamRepository.findById(homeTeamId);
+        Optional<TeamDTO> awayTeam = teamRepository.findById(awayTeamId);
+        if(match.isPresent() && homeTeam.isPresent() && awayTeam.isPresent()){
+            match.get().setTeamHome(homeTeam.get());
+            match.get().setTeamVisitor(awayTeam.get());
+            matchRepository.save(match.get());
         }else {
             throw new RuntimeException();
         }
