@@ -18,7 +18,7 @@ public class MatchController {
 
     @GetMapping()
     public ResponseEntity<Object> list(){
-        return ResponseEntity.ok(teamService.list());
+        return ResponseEntity.ok(matchService.list());
     }
 
     @PostMapping("/{homeTeamId}/{awayTeamId}")

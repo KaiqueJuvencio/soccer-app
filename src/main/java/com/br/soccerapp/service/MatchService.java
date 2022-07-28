@@ -21,8 +21,8 @@ public class MatchService {
     @Autowired
     MatchRepository matchRepository;
 
-    public List<TeamDTO> list(){
-        return teamRepository.findAll();
+    public List<MatchDTO> list(){
+        return matchRepository.findAll();
     }
 
     public MatchDTO create(Long homeTeamId, Long awayTeamId){
