@@ -13,9 +13,6 @@ public class MatchDTO {
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
     private Long id;
-    @ManyToOne
-    @JoinColumn(name = "league_id")
-    private LeagueDTO league;
     @OneToOne
     @JoinColumn(name = "team_home")
     private TeamDTO teamHome;
@@ -24,5 +21,10 @@ public class MatchDTO {
     private TeamDTO teamVisitor;
 
     public MatchDTO() {
+    }
+
+    public MatchDTO(TeamDTO teamHome, TeamDTO teamVisitor) {
+        this.teamHome = teamHome;
+        this.teamVisitor = teamVisitor;
     }
 }

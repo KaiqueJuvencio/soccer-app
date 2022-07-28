@@ -1,9 +1,7 @@
 package com.br.soccerapp.service;
 
-import com.br.soccerapp.model.LeagueDTO;
 import com.br.soccerapp.model.PlayerDTO;
 import com.br.soccerapp.model.TeamDTO;
-import com.br.soccerapp.repository.LeagueRepository;
 import com.br.soccerapp.repository.PlayerRepository;
 import com.br.soccerapp.repository.TeamRepository;
 import org.springframework.beans.factory.annotation.Autowired;

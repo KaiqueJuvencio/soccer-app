@@ -1,14 +1,11 @@
 package com.br.soccerapp.service;
 
-import com.br.soccerapp.model.LeagueDTO;
 import com.br.soccerapp.model.StatisticsDTO;
 import com.br.soccerapp.model.TeamDTO;
-import com.br.soccerapp.repository.LeagueRepository;
 import com.br.soccerapp.repository.StatisticsRepository;
 import com.br.soccerapp.repository.TeamRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.PathVariable;
 
 import java.util.List;
 import java.util.Optional;
@@ -18,9 +15,6 @@ public class StatisticsService {
 
     @Autowired
     StatisticsRepository statisticsRepository;
-
-    @Autowired
-    LeagueRepository leagueRepository;
 
     @Autowired
     TeamRepository teamRepository;

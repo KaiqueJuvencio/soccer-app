@@ -1,8 +1,6 @@
 package com.br.soccerapp.controller;
 
-import com.br.soccerapp.model.StatisticsDTO;
 import com.br.soccerapp.service.StatisticsService;
-import com.br.soccerapp.service.TeamService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

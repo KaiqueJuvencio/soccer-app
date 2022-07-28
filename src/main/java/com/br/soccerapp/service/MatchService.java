@@ -1,8 +1,10 @@
 package com.br.soccerapp.service;
 
 import com.br.soccerapp.model.LeagueDTO;
+import com.br.soccerapp.model.MatchDTO;
 import com.br.soccerapp.model.TeamDTO;
 import com.br.soccerapp.repository.LeagueRepository;
+import com.br.soccerapp.repository.MatchRepository;
 import com.br.soccerapp.repository.TeamRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -11,23 +13,24 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class TeamService {
+public class MatchService {
 
     @Autowired
     TeamRepository teamRepository;
 
     @Autowired
-    LeagueRepository leagueRepository;
+    MatchRepository matchRepository;
 
     public List<TeamDTO> list(){
         return teamRepository.findAll();
     }
 
-    public TeamDTO create(String name, Long leagueId){
-        Optional<LeagueDTO> league = leagueRepository.findById(leagueId);
-        if(league.isPresent()){
-            TeamDTO teamDTO = new TeamDTO(name, league.get());
-            return teamRepository.save(teamDTO);
+    public MatchDTO create(Long homeTeamId, Long awayTeamId){
+        Optional<TeamDTO> homeTeam = teamRepository.findById(homeTeamId);
+        Optional<TeamDTO> awayTeam = teamRepository.findById(awayTeamId);
+        if(homeTeam.isPresent() && awayTeam.isPresent()){
+            MatchDTO matchDTO = new MatchDTO(homeTeam.get(), awayTeam.get());
+            return matchRepository.save(matchDTO);
         }else {
             throw new RuntimeException();
         }
