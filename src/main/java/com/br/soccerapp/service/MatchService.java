@@ -50,6 +50,6 @@ public class MatchService {
     }
 
     public void delete(Long id){
-        teamRepository.deleteById(id);
+        matchRepository.deleteById(id);
     }
 }
