@@ -24,10 +24,10 @@ public class LeagueService {
         return leagueRepository.save(league);
     }
 
-    public void update(LeagueDTO league){
-        Optional<LeagueDTO> leagueResponse = leagueRepository.findById(league.getId());
+    public void update(Long id, String name){
+        Optional<LeagueDTO> leagueResponse = leagueRepository.findById(id);
         if(leagueResponse.isPresent()){
-            leagueResponse.get().setName(league.getName());
+            leagueResponse.get().setName(name);
             leagueResponse.get().setStartDate(LocalDateTime.now());
             leagueRepository.save(leagueResponse.get());
         }

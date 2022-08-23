@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.security.SecureRandom;
+
 @RestController
 @RequestMapping("/league")
 public class LeagueController {
@@ -24,9 +26,9 @@ public class LeagueController {
         return ResponseEntity.ok("");
     }
 
-    @PutMapping()
-    public ResponseEntity<Object> update(@RequestBody LeagueDTO league){
-        leagueService.update(league);
+    @PutMapping("/{id}/{name}")
+    public ResponseEntity<Object> update(@PathVariable Long id, @PathVariable String name){
+        leagueService.update(id, name);
         return ResponseEntity.ok("");
     }
 
