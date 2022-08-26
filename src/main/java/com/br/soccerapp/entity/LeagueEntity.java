@@ -1,4 +1,4 @@
-package com.br.soccerapp.model;
+package com.br.soccerapp.entity;
 
 import lombok.Data;
 
@@ -8,7 +8,7 @@ import java.time.LocalDateTime;
 @Entity
 @Table(name = "LEAGUE")
 @Data
-public class LeagueDTO {
+public class LeagueEntity {
 
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
@@ -16,10 +16,10 @@ public class LeagueDTO {
     private String name;
     private LocalDateTime startDate;
 
-    public LeagueDTO(String name) {
+    public LeagueEntity(String name) {
         this.name = name;
         this.startDate = LocalDateTime.now();
     }
-    public LeagueDTO() {
+    public LeagueEntity() {
     }
 }

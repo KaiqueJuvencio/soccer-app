@@ -1,7 +1,7 @@
 package com.br.soccerapp.service;
 
-import com.br.soccerapp.model.StatisticsDTO;
-import com.br.soccerapp.model.TeamDTO;
+import com.br.soccerapp.entity.StatisticsEntity;
+import com.br.soccerapp.entity.TeamEntity;
 import com.br.soccerapp.repository.StatisticsRepository;
 import com.br.soccerapp.repository.TeamRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,24 +19,24 @@ public class StatisticsService {
     @Autowired
     TeamRepository teamRepository;
 
-    public List<StatisticsDTO> list(){
+    public List<StatisticsEntity> list(){
         return statisticsRepository.findAll();
     }
 
-    public StatisticsDTO create(Long teamId){
-        Optional<TeamDTO> team = teamRepository.findById(teamId);
+    public StatisticsEntity create(Long teamId){
+        Optional<TeamEntity> team = teamRepository.findById(teamId);
 
         if(team.isPresent()){
-            StatisticsDTO statisticsDTO = new StatisticsDTO(team.get());
+            StatisticsEntity statisticsDTO = new StatisticsEntity(team.get());
             return statisticsRepository.save(statisticsDTO);
         }else {
             throw new RuntimeException();
         }
     }
 
-    public StatisticsDTO update(Long teamId, String statisticEnum){
-        Optional<TeamDTO> team = teamRepository.findById(teamId);
-        Optional<StatisticsDTO> statistic = statisticsRepository.findByTeam(team.get());
+    public StatisticsEntity update(Long teamId, String statisticEnum){
+        Optional<TeamEntity> team = teamRepository.findById(teamId);
+        Optional<StatisticsEntity> statistic = statisticsRepository.findByTeam(team.get());
         if(statistic.isPresent() && team.isPresent()){
             statistic.get().setMatchesQuantities(statistic.get().getMatchesQuantities() + 1);
             switch (statisticEnum){

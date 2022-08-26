@@ -1,7 +1,7 @@
 package com.br.soccerapp.service;
 
-import com.br.soccerapp.model.LeagueDTO;
-import com.br.soccerapp.model.TeamDTO;
+import com.br.soccerapp.entity.LeagueEntity;
+import com.br.soccerapp.entity.TeamEntity;
 import com.br.soccerapp.repository.LeagueRepository;
 import com.br.soccerapp.repository.TeamRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,14 +19,14 @@ public class TeamService {
     @Autowired
     LeagueRepository leagueRepository;
 
-    public List<TeamDTO> list(){
+    public List<TeamEntity> list(){
         return teamRepository.findAll();
     }
 
-    public TeamDTO create(String name, Long leagueId){
-        Optional<LeagueDTO> league = leagueRepository.findById(leagueId);
+    public TeamEntity create(String name, Long leagueId){
+        Optional<LeagueEntity> league = leagueRepository.findById(leagueId);
         if(league.isPresent()){
-            TeamDTO teamDTO = new TeamDTO(name, league.get());
+            TeamEntity teamDTO = new TeamEntity(name, league.get());
             return teamRepository.save(teamDTO);
         }else {
             throw new RuntimeException();
@@ -34,7 +34,7 @@ public class TeamService {
     }
 
     public void update(String name, Long teamId){
-        Optional<TeamDTO> team = teamRepository.findById(teamId);
+        Optional<TeamEntity> team = teamRepository.findById(teamId);
         if(team.isPresent()){
             team.get().setName(name);
             teamRepository.save(team.get());

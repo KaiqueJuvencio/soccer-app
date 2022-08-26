@@ -1,12 +1,9 @@
 package com.br.soccerapp.controller;
 
-import com.br.soccerapp.model.LeagueDTO;
 import com.br.soccerapp.service.LeagueService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import java.security.SecureRandom;
 
 @RestController
 @RequestMapping("/league")
