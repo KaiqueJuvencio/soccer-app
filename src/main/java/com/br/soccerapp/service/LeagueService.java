@@ -27,11 +27,17 @@ public class LeagueService {
     }
 
     public void update(Long id, String name){
-        Optional<LeagueEntity> leagueResponse = leagueRepository.findById(id);
-        if(leagueResponse.isPresent()){
+        try{
+            Optional<LeagueEntity> leagueResponse = leagueRepository.findById(id);
+            verifyLeagueExist(leagueResponse);
             leagueResponse.get().setName(name);
             leagueResponse.get().setStartDate(LocalDateTime.now());
             leagueRepository.save(leagueResponse.get());
+        }catch (ObjectNullException e){
+            throw new ObjectNullException("League not exist");
+        }
+        catch (Exception e){
+            throw new BadRequestException("Error to delete league");
         }
     }
 
