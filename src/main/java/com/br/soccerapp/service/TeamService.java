@@ -2,6 +2,8 @@ package com.br.soccerapp.service;
 
 import com.br.soccerapp.entity.LeagueEntity;
 import com.br.soccerapp.entity.TeamEntity;
+import com.br.soccerapp.exceptionhandler.exceptions.BadRequestException;
+import com.br.soccerapp.exceptionhandler.exceptions.ObjectNullException;
 import com.br.soccerapp.repository.LeagueRepository;
 import com.br.soccerapp.repository.TeamRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,16 +36,24 @@ public class TeamService {
     }
 
     public void update(String name, Long teamId){
-        Optional<TeamEntity> team = teamRepository.findById(teamId);
-        if(team.isPresent()){
+        try{
+            Optional<TeamEntity> team = teamRepository.findById(teamId);
+            verifyTeamExist(team);
             team.get().setName(name);
             teamRepository.save(team.get());
-        }else {
-            throw new RuntimeException();
+        }catch (ObjectNullException e){
+            throw new ObjectNullException("Team not exist");
+        }
+        catch (Exception e){
+            throw new BadRequestException("Team to delete league");
         }
     }
 
     public void delete(Long id){
         teamRepository.deleteById(id);
+    }
+
+    public void verifyTeamExist(Optional<TeamEntity> team) {
+        if(team.isEmpty()) throw new ObjectNullException("");
     }
 }
