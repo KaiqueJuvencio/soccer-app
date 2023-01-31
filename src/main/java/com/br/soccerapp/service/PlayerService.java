@@ -1,5 +1,7 @@
 package com.br.soccerapp.service;
 
+import com.br.soccerapp.exception.BadRequestException;
+import com.br.soccerapp.exception.ObjectNullException;
 import com.br.soccerapp.model.LeagueDTO;
 import com.br.soccerapp.model.PlayerDTO;
 import com.br.soccerapp.model.TeamDTO;
@@ -26,28 +28,47 @@ public class PlayerService {
     }
 
     public PlayerDTO create(String name, Long teamId){
-        Optional<TeamDTO> team = teamRepository.findById(teamId);
-        if(team.isPresent()){
+        try{
+            Optional<TeamDTO> team = teamRepository.findById(teamId);
+            this.verifyIsNull(team);
             PlayerDTO player = new PlayerDTO(name, team.get());
             return playerRepository.save(player);
-        }else {
-            throw new RuntimeException();
+        }catch (ObjectNullException e){
+            throw new ObjectNullException("Team not exist");
+        }catch (Exception e){
+            throw new BadRequestException("Error to create player");
         }
     }
 
     public void update(String name, Long playerId, Long teamId){
-        Optional<PlayerDTO> player = playerRepository.findById(playerId);
-        Optional<TeamDTO> team = teamRepository.findById(teamId);
-        if(player.isPresent() && team.isPresent()){
+        try{
+            Optional<PlayerDTO> player = playerRepository.findById(playerId);
+            Optional<TeamDTO> team = teamRepository.findById(teamId);
+            this.verifyIsNull(team);
+            this.verifyIsNull(player);
             player.get().setName(name);
             player.get().setTeam(team.get());
             playerRepository.save(player.get());
-        }else {
-            throw new RuntimeException();
+        }catch (ObjectNullException e){
+            throw new ObjectNullException("Team or Player not exist");
+        }catch (Exception e) {
+            throw new BadRequestException("Error to update player");
         }
     }
 
     public void delete(Long id){
-        playerRepository.deleteById(id);
+        try{
+            Optional<PlayerDTO> player = playerRepository.findById(id);
+            this.verifyIsNull(player);
+            playerRepository.deleteById(id);
+        }catch (ObjectNullException e){
+            throw new ObjectNullException("Player not exist");
+        }catch (Exception e) {
+            throw new BadRequestException("Error to delete player");
+        }
+    }
+
+    public void verifyIsNull(Optional<?> method){
+        if(method.isEmpty()) throw new ObjectNullException("");
     }
 }

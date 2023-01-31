@@ -18,9 +18,9 @@ public class PlayerController {
         return ResponseEntity.ok(playerService.list());
     }
 
-    @PostMapping("/{name}/{teamId}")
-    public ResponseEntity<Object> create(@PathVariable String name, @PathVariable Long teamId){
-        playerService.create(name, teamId);
+    @PostMapping()
+    public ResponseEntity<Object> create(@RequestParam String playerName, @RequestParam Long teamId){
+        playerService.create(playerName, teamId);
         return ResponseEntity.ok("");
     }
 
