@@ -1,5 +1,8 @@
 package com.br.soccerapp.service;
 
+import com.br.soccerapp.exception.BadRequestException;
+import com.br.soccerapp.exception.ObjectNullException;
+import com.br.soccerapp.helper.Helper;
 import com.br.soccerapp.model.LeagueDTO;
 import com.br.soccerapp.repository.LeagueRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,20 +24,41 @@ public class LeagueService {
     }
 
     public LeagueDTO create(String name){
-        LeagueDTO league = new LeagueDTO(name);
-        return leagueRepository.save(league);
+        try{
+            LeagueDTO league = new LeagueDTO(name);
+            return leagueRepository.save(league);
+        }catch (Exception e){
+            throw new BadRequestException("Error to create League");
+        }
     }
 
     public void update(LeagueDTO league){
-        Optional<LeagueDTO> leagueResponse = leagueRepository.findById(league.getId());
-        if(leagueResponse.isPresent()){
+        try {
+            Optional<LeagueDTO> leagueResponse = leagueRepository.findById(league.getId());
+            this.verifyIsNull(leagueResponse);
             leagueResponse.get().setName(league.getName());
             leagueResponse.get().setStartDate(LocalDateTime.now());
             leagueRepository.save(leagueResponse.get());
+        }catch (ObjectNullException e){
+            throw new ObjectNullException("League not exist");
+        }catch (Exception e) {
+            throw new BadRequestException("Error to update League");
         }
     }
 
     public void delete(Long id){
-        leagueRepository.deleteById(id);
+        try{
+            Optional<LeagueDTO> league = leagueRepository.findById(id);
+            this.verifyIsNull(league);
+            leagueRepository.deleteById(id);
+        }catch (ObjectNullException e){
+            throw new ObjectNullException("League not exist");
+        }catch (Exception e) {
+            throw new BadRequestException("Error to delete League");
+        }
+    }
+
+    public void verifyIsNull(Optional<?> method){
+        if(method.isEmpty()) throw new ObjectNullException("");
     }
 }

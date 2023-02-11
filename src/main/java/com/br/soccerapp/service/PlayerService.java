@@ -2,6 +2,7 @@ package com.br.soccerapp.service;
 
 import com.br.soccerapp.exception.BadRequestException;
 import com.br.soccerapp.exception.ObjectNullException;
+import com.br.soccerapp.helper.Helper;
 import com.br.soccerapp.model.LeagueDTO;
 import com.br.soccerapp.model.PlayerDTO;
 import com.br.soccerapp.model.TeamDTO;
@@ -36,7 +37,7 @@ public class PlayerService {
         }catch (ObjectNullException e){
             throw new ObjectNullException("Team not exist");
         }catch (Exception e){
-            throw new BadRequestException("Error to create player");
+            throw new BadRequestException("Error to create Player");
         }
     }
 
@@ -52,7 +53,7 @@ public class PlayerService {
         }catch (ObjectNullException e){
             throw new ObjectNullException("Team or Player not exist");
         }catch (Exception e) {
-            throw new BadRequestException("Error to update player");
+            throw new BadRequestException("Error to update Player");
         }
     }
 
@@ -64,7 +65,7 @@ public class PlayerService {
         }catch (ObjectNullException e){
             throw new ObjectNullException("Player not exist");
         }catch (Exception e) {
-            throw new BadRequestException("Error to delete player");
+            throw new BadRequestException("Error to delete Player");
         }
     }
 
