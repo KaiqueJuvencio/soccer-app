@@ -1,5 +1,7 @@
 package com.br.soccerapp.service;
 
+import com.br.soccerapp.exception.BadRequestException;
+import com.br.soccerapp.exception.ObjectNullException;
 import com.br.soccerapp.model.LeagueDTO;
 import com.br.soccerapp.model.StatisticsDTO;
 import com.br.soccerapp.model.TeamDTO;
@@ -30,22 +32,26 @@ public class StatisticsService {
     }
 
     public StatisticsDTO create(Long teamId){
-        Optional<TeamDTO> team = teamRepository.findById(teamId);
-
-        if(team.isPresent()){
+        try{
+            Optional<TeamDTO> team = teamRepository.findById(teamId);
+            this.verifyIsNull(team);
             StatisticsDTO statisticsDTO = new StatisticsDTO(team.get());
             return statisticsRepository.save(statisticsDTO);
-        }else {
-            throw new RuntimeException();
+        }catch (ObjectNullException e){
+            throw new ObjectNullException("Team not exist");
+        }catch (Exception e){
+            throw new BadRequestException("Error to create Statistic");
         }
     }
 
     public StatisticsDTO update(Long teamId, String statisticEnum){
-        Optional<TeamDTO> team = teamRepository.findById(teamId);
-        Optional<StatisticsDTO> statistic = statisticsRepository.findByTeam(team.get());
-        if(statistic.isPresent() && team.isPresent()){
+        try {
+            Optional<TeamDTO> team = teamRepository.findById(teamId);
+            this.verifyIsNull(team);
+            Optional<StatisticsDTO> statistic = statisticsRepository.findByTeam(team.get());
+            this.verifyIsNull(statistic);
             statistic.get().setMatchesQuantities(statistic.get().getMatchesQuantities() + 1);
-            switch (statisticEnum){
+            switch (statisticEnum) {
                 case "victory":
                     statistic.get().setVictories(statistic.get().getVictories() + 1);
                     statistic.get().setPoints(statistic.get().getPoints() + 3);
@@ -59,12 +65,26 @@ public class StatisticsService {
                     break;
             }
             return statisticsRepository.save(statistic.get());
-        }else {
-            throw new RuntimeException();
+        }catch (ObjectNullException e){
+            throw new ObjectNullException("Team or Statistic not exist");
+        }catch (Exception e) {
+            throw new BadRequestException("Error to update Statistic");
         }
     }
 
     public void delete(Long id){
-        statisticsRepository.deleteById(id);
+        try{
+            Optional<StatisticsDTO> statistic = statisticsRepository.findById(id);
+            this.verifyIsNull(statistic);
+            statisticsRepository.deleteById(id);
+        }catch (ObjectNullException e){
+            throw new ObjectNullException("Statistic not exist");
+        }catch (Exception e) {
+            throw new BadRequestException("Error to delete Statistic");
+        }
+    }
+
+    public void verifyIsNull(Optional<?> method){
+        if(method.isEmpty()) throw new ObjectNullException("");
     }
 }

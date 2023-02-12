@@ -44,9 +44,9 @@ public class PlayerService {
     public void update(String name, Long playerId, Long teamId){
         try{
             Optional<PlayerDTO> player = playerRepository.findById(playerId);
+            this.verifyIsNull(player);
             Optional<TeamDTO> team = teamRepository.findById(teamId);
             this.verifyIsNull(team);
-            this.verifyIsNull(player);
             player.get().setName(name);
             player.get().setTeam(team.get());
             playerRepository.save(player.get());
