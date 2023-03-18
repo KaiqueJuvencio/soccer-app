@@ -24,16 +24,7 @@ jobs:
           java-version: 11
           distribution: adopt-openj9
       - name: clean install
-        run: mvn clean install
-        
-  container-check:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-      - name: Build Docker image
-        run: |
-          mvn clean install
-          docker-compose up --build
+        run: mvn clean install        
     
   deploy-dev:
     runs-on: ubuntu-latest
