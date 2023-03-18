@@ -14,15 +14,10 @@ jobs:
       - name: Run a one-line script
         run: echo Hello, world!
       - name: db-up
-        run: docker-compose up db | tee build.log
-      - name: Check job status
-        if: ${{ success('chmod +x deploy.sh && sh -c "grep -q \\"db     | PostgreSQL init process complete; ready for start up.\\" build.log"') }}
-        run: echo "Job completed successfully"
-      - name: Notify on failure
-        if: ${{ failure('chmod +x deploy.sh && sh -c "grep -q \\"Erro\\" build.log"') }}
-        run: echo "Job failed"
+        run: docker-compose up -d db | tee build.log
   
   java-build:
+    needs: postgres
     runs-on: ubuntu-latest
     #if: ${{ success('chmod +x deploy.sh && sh -c "grep -q \\"db     | PostgreSQL init process complete; ready for start up.\\" build.log"') }}
     steps:
