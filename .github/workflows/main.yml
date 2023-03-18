@@ -24,7 +24,7 @@ jobs:
           java-version: 17
           distribution: oracle
       - name: Build with Maven
-        run: mvn package
+        run: mvn clean install
     
   deploy-dev:
     runs-on: ubuntu-latest
