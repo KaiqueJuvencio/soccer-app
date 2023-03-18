@@ -19,7 +19,7 @@ jobs:
   java-build:
     needs: postgres
     runs-on: ubuntu-latest
-    if: ${{ success(grep -q "Build successful!" build.log) }}
+    if: ${{ success(bash -c 'grep -q "Build successful!" build.log') }}
     steps:
       - uses: actions/checkout@v2
       - name: Setup Java JDK
