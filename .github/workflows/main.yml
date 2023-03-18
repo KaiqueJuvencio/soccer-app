@@ -25,7 +25,7 @@ jobs:
           java-version: 11
           distribution: adopt-openj9
       - name: db-up
-        run: docker-compose up db --build
+        run: docker-compose up db
       - name: clean install
         run: mvn clean install
       #- name: Build Docker image
