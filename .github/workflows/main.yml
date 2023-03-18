@@ -12,6 +12,7 @@ jobs:
     steps:
       - name: Run a one-line script
         run: echo Hello, world!
+        
   
   java-teste:
     runs-on: ubuntu-latest
@@ -23,8 +24,10 @@ jobs:
         with:
           java-version: 17
           distribution: oracle
+      - name: Build Docker image
+        run: docker compose up
       - name: Build with Maven
-        run: mvn package
+        run: mvn clean install
     
   deploy-dev:
     runs-on: ubuntu-latest
