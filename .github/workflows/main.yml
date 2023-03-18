@@ -19,7 +19,7 @@ jobs:
         if: ${{ success('chmod +x deploy.sh && sh -c "grep -q \\"db     | PostgreSQL init process complete; ready for start up.\\" build.log"') }}
         run: echo "Job completed successfully"
       - name: Notify on failure
-        if: ${{ success('chmod +x deploy.sh && sh -c "grep -q \\"Error\\" build.log"') }}
+        if: ${{ failure('chmod +x deploy.sh && sh -c "grep -q \\"Erro\\" build.log"') }}
         run: echo "Job failed"
   
   java-build:
