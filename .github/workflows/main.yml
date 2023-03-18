@@ -12,7 +12,8 @@ jobs:
     steps:
       - name: Run a one-line script
         run: echo Hello, world!
-        
+      - name: db-up
+        run: docker-compose up -d db
   
   java-teste:
     runs-on: ubuntu-latest
@@ -24,11 +25,11 @@ jobs:
         with:
           java-version: 11
           distribution: adopt-openj9
-      - name: db-up
-        run: | 
-              docker-compose up -d db
-              mvn clean install
-              docker-compose down
+      #- name: db-up
+      #  run: | 
+      #       docker-compose up -d db
+       #      mvn clean install
+       #      docker-compose down
       - name: clean install
         run: mvn clean install
       #- name: Build Docker image
