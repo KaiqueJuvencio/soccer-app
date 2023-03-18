@@ -2,4 +2,6 @@ build:
   docker:
     web: Dockerfile
 run:
+  pre:
+    - "mvn clean install"
   web: docker-compose up
