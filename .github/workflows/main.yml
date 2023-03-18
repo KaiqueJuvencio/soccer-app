@@ -14,7 +14,7 @@ jobs:
       - name: Run a one-line script
         run: echo Hello, world!
       - name: db-up
-        run: docker-compose up -d db
+        run: docker-compose up db
   
   java-teste:
     runs-on: ubuntu-latest
