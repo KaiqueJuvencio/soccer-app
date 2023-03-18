@@ -9,21 +9,6 @@ on:
 jobs:
   java-build:
     runs-on: ubuntu-latest
-    services:
-      # Label used to access the service container
-      postgres:
-        # Docker Hub image
-        image: postgres
-        # Provide the password for postgres
-        env:
-          POSTGRES_PASSWORD: soccerapp
-        # Set health checks to wait until postgres has started
-        options: >-
-          --health-cmd pg_isready
-          --health-interval 10s
-          --health-timeout 5s
-          --health-retries 5
-    #if: ${{ success('chmod +x deploy.sh && sh -c "grep -q \\"db     | PostgreSQL init process complete; ready for start up.\\" build.log"') }}
     steps:
       - uses: actions/checkout@v2
       - name: Setup Java JDK
@@ -31,18 +16,15 @@ jobs:
         with:
           java-version: 11
           distribution: adopt-openj9
-      #- name: db-up
-      #  run: | 
-      #       docker-compose up -d db
-       #      mvn clean install
-       #      docker-compose down
       - name: clean install
         run: mvn clean install
-      #- name: Build Docker image
-       # run: docker-compose up --build
-      #- name: Build with Maven
-      # run: mvn clean install
-      
+        
+  container-test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Build Docker image
+        run: docker-compose up --build
     
   deploy-dev:
     runs-on: ubuntu-latest
