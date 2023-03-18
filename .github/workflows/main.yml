@@ -31,7 +31,9 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: Build Docker image
-        run: docker-compose up --build
+        run: |
+          mvn clean install
+          docker-compose up --build
     
   deploy-dev:
     runs-on: ubuntu-latest
