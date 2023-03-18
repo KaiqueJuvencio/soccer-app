@@ -24,6 +24,8 @@ jobs:
         with:
           java-version: 11
           distribution: adopt-openj9
+      - name: Build
+        run: mvn clean install -Pno-db
       - name: Build Docker image
         run: docker-compose up --build
       #- name: Build with Maven
