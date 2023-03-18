@@ -11,7 +11,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - name: db-up
+      - name: postgres up
         run: docker-compose up -d db | tee build.log
         
   java-build:
@@ -23,7 +23,7 @@ jobs:
         with:
           java-version: 11
           distribution: adopt-openj9
-      - name: clean install
+      - name: mvn clean install
         run: mvn clean install        
     
   deploy-dev:
