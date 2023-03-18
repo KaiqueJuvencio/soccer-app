@@ -15,10 +15,16 @@ jobs:
         run: echo Hello, world!
       - name: db-up
         run: docker-compose up db | tee build.log
+      - name: Check job status
+        if: success(grep -q "PostgreSQL init process complete" my-job.log)
+        run: echo "Job completed successfully"
+      - name: Notify on failure
+        if: failure(grep -q "Error" my-job.log)
+        run: echo "Job failed"
   
   java-build:
     runs-on: ubuntu-latest
-    if: ${{ success('chmod +x deploy.sh && sh -c "grep -q \\"db     | PostgreSQL init process complete; ready for start up.\\" build.log"') }}
+    #if: ${{ success('chmod +x deploy.sh && sh -c "grep -q \\"db     | PostgreSQL init process complete; ready for start up.\\" build.log"') }}
     steps:
       - uses: actions/checkout@v2
       - name: Setup Java JDK
