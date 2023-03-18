@@ -7,6 +7,13 @@ on:
   #workflow_dispatch:
 
 jobs:
+  postgres-check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: db-up
+        run: docker-compose up -d db | tee build.log
+        
   java-build:
     runs-on: ubuntu-latest
     steps:
@@ -19,7 +26,7 @@ jobs:
       - name: clean install
         run: mvn clean install
         
-  container-test:
+  container-check:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
