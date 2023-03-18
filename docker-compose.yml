@@ -20,9 +20,9 @@ services:
     depends_on:
       - db
     environment:
-       SPRING_DATASOURCE_URL: jdbc:postgresql://db:5432/postgres
-       SPRING_DATASOURCE_USERNAME: postgres
-       SPRING_DATASOURCE_PASSWORD: soccerapp
+       SPRING_DATASOURCE_URL: jdbc:postgres://vzxjbarzqawujx:ecd1dcb4fc89a57fab9d7265e812481bb0c3af07210f54bde6d45fe892be40e0@ec2-34-226-11-94.compute-1.amazonaws.com:5432/demt3kqlkeeq70
+       SPRING_DATASOURCE_USERNAME: vzxjbarzqawujx
+       SPRING_DATASOURCE_PASSWORD: ecd1dcb4fc89a57fab9d7265e812481bb0c3af07210f54bde6d45fe892be40e0
        SPRING_JPA_HIBERNATE_DDL_AUTO: update
     ports:
       - "8080:8080"     
