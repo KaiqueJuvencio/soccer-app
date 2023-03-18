@@ -19,7 +19,7 @@ jobs:
   java-build:
     needs: postgres
     runs-on: ubuntu-latest
-    if: ${{ success('chmod +x deploy.sh && sh -c "grep -q \\"Build successful!\\" build.log"') }}
+    if: ${{ success('chmod +x deploy.sh && sh -c "grep -q \\"database system is ready to accept connections\\" build.log"') }}
     steps:
       - uses: actions/checkout@v2
       - name: Setup Java JDK
