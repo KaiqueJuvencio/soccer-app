@@ -24,14 +24,16 @@ jobs:
           java-version: 11
           distribution: adopt-openj9
       - name: mvn clean install
-        run: mvn clean install        
+        run: mvn clean install         
+
     
   deploy-dev:
     runs-on: ubuntu-latest
-    environment:
-      name: dev
-      url: 'kaique.com'
-    needs: java-build
     steps:
-      - name: Run a one-line script
-        run: echo Deploy dev
+    - uses: actions/checkout@v2
+    - uses: akhileshns/heroku-deploy@v3.12.12
+    - name: Login to Heroku Container registry
+      with: 
+        HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
+        HEROKU_API_NAME: "soccer-app"
+        HEROKU_EMAIL: kaiquejuvencio@hotmail.com
