@@ -6,4 +6,4 @@ RUN mvn -f /home/app/pom.xml clean package -DskipTests
 FROM openjdk:11-jre-slim
 COPY --from=build /home/app/target/*.jar /usr/local/lib/*.jar
 EXPOSE 8080
-ENTRYPOINT ["java","-Xmx512m","-jar","/usr/local/lib/*.jar"]
+ENTRYPOINT ["java","-XX:MaxGCPauseMillis=500","-XX:+UseG1GC","-Xmx512m","-jar","/usr/local/lib/*.jar"]
