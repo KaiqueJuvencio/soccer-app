@@ -31,7 +31,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - name: Login to Heroku Container registry
         with: 
           HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
           HEROKU_API_NAME: "soccer-app"
