@@ -40,7 +40,7 @@ jobs:
           heroku_email: kaiquejuvencio@hotmail.com
           
   sonar:
-    name: Build and analyze
+    name: sonar-analyze
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
