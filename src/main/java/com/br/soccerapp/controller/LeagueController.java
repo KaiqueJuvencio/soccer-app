@@ -4,7 +4,9 @@ import com.br.soccerapp.model.LeagueDTO;
 import com.br.soccerapp.service.LeagueService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 
 @RestController
 @RequestMapping("/league")
@@ -34,5 +36,12 @@ public class LeagueController {
     public ResponseEntity<Object> delete(@PathVariable Long id){
         leagueService.delete(id);
         return ResponseEntity.ok("");
+    }
+
+    @GetMapping("/teste")
+    public ModelAndView home(Model model) {
+        ModelAndView modelAndView = new ModelAndView("teste");
+        model.addAttribute("message", "Hello, World!");
+        return modelAndView;
     }
 }
