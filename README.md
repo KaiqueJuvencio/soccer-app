@@ -2,7 +2,7 @@
 
 ## Pipeline:
 - GitHub Actions
-- É possível ver o comnados completos no arquivo: .github/workflows/main.yml
+- É possível ver o comandos completos no arquivo: .github/workflows/main.yml
 - Link do deploy da aplicação : https://soccer-app.herokuapp.com/home
 
 ## 1º Step
