@@ -1,11 +1,31 @@
-# :soccer: soccer-app :soccer:
+# :soccer: soccer-app 
 
-## Pipeline:
-- GitHub Actions
-- É possível ver o comandos completos no arquivo: .github/workflows/main.yml
+## :warning: Considerações :warning:
+- Usamos GitHub Actions
+- É possível ver os comandos completos no arquivo: .github/workflows/main.yml
 - Link do deploy da aplicação: https://soccer-app.herokuapp.com/home
 - Link análise SonaQube: https://sonarcloud.io/project/overview?id=KaiqueJuvencio_soccer-app
 
+
+## Tech Stack
+
+<div style="display: inline_block">
+    <img align="center" alt="Java" height="50" width="50" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg">
+    <img align="center" alt="Postgres" height="50" width="50"  src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg" />
+    <img align="center" alt="Docker" height="70" width="70" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg" />
+    <img align="center" alt="JavaScript" height="50" width="50" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" />
+    <img align="center" alt="JavaScript" height="50" width="50" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" />
+    <img align="center" alt="JavaScript" height="50" width="50" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" />    
+</div>
+<br>
+Tecnologias usadas para construir a aplicação
+
+- Java (jdk-11.0.2)
+- Postgres
+- Docker/Docker Compose
+- Front: HTML5, CSS3, JavaScript
+
+## Pipeline:
 
 ## 1º Step
 Faz o build da apliação java
@@ -83,7 +103,7 @@ deploy-dev:
           heroku_email: kaiquejuvencio@hotmail.com
 ```
 
-![image](https://user-images.githubusercontent.com/39711228/226446475-e2f24d12-7cb9-481e-a28d-2545a5727697.png)
+![image](https://user-images.githubusercontent.com/39711228/226448529-576aa6c8-048f-4992-a58f-f547b360f3a5.png)
 
 
 
