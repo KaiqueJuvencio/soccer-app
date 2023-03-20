@@ -37,11 +37,4 @@ public class LeagueController {
         leagueService.delete(id);
         return ResponseEntity.ok("");
     }
-
-    @GetMapping("/teste")
-    public ModelAndView home(Model model) {
-        ModelAndView modelAndView = new ModelAndView("teste");
-        model.addAttribute("message", "Hello, World!");
-        return modelAndView;
-    }
 }

@@ -82,7 +82,7 @@
 			<thead>
 				<tr>
 					<th>Nome</th>
-					<th>Data de início</th>
+					<th>Data de Criação</th>
 					<th></th>
 				</tr>
 			</thead>
