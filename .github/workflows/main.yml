@@ -16,6 +16,7 @@ jobs:
         
   java-build:
     runs-on: ubuntu-latest
+    needs: postgres-check
     steps:
       - uses: actions/checkout@v2
       - name: Setup Java JDK
