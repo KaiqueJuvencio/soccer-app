@@ -9,6 +9,7 @@ on:
 jobs:
   postgres-check:
     runs-on: ubuntu-latest
+    needs: sonar-analyze
     steps:
       - uses: actions/checkout@v2
       - name: postgres up
@@ -39,7 +40,7 @@ jobs:
           heroku_app_name: "soccer-app"
           heroku_email: kaiquejuvencio@hotmail.com
           
-  sonar:
+  sonar-analyze:
     name: sonar-analyze
     runs-on: ubuntu-latest
     steps:
