@@ -3,20 +3,11 @@
 ## Pipeline:
 - GitHub Actions
 - É possível ver o comandos completos no arquivo: .github/workflows/main.yml
-- Link do deploy da aplicação : https://soccer-app.herokuapp.com/home
+- Link do deploy da aplicação: https://soccer-app.herokuapp.com/home
+- Link análise SonaQube: https://sonarcloud.io/project/overview?id=KaiqueJuvencio_soccer-app
+
 
 ## 1º Step
-Sobe um container composto no docker-compose onde faz um check na instância do postgres que é usada pela aplicação
-```bash
-postgres-check:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-      - name: postgres up
-        run: docker-compose up -d db | tee build.log
-```
-
-## 2º Step
 Faz o build da apliação java
 ```bash
   java-build:
@@ -32,7 +23,52 @@ Faz o build da apliação java
         run: mvn clean install    
 ```
 
+## 2º Step
+Faz uma análise do código com SonaQube
+```bash
+  sonar-analyze:
+    name: sonar-analyze
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0  # Shallow clones should be disabled for a better relevancy of analysis
+      - name: Set up JDK 11
+        uses: actions/setup-java@v3
+        with:
+          java-version: 11
+          distribution: 'zulu' # Alternative distribution options are available.
+      - name: Cache SonarCloud packages
+        uses: actions/cache@v3
+        with:
+          path: ~/.sonar/cache
+          key: ${{ runner.os }}-sonar
+          restore-keys: ${{ runner.os }}-sonar
+      - name: Cache Maven packages
+        uses: actions/cache@v3
+        with:
+          path: ~/.m2
+          key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}
+          restore-keys: ${{ runner.os }}-m2
+      - name: Build and analyze
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+        run: mvn -B verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=KaiqueJuvencio_soccer-app  
+```
+
 ## 3º Step
+Sobe um container composto no docker-compose onde faz um check na instância do postgres que é usada pela aplicação
+```bash
+postgres-check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: postgres up
+        run: docker-compose up -d db | tee build.log
+```
+
+## 4º Step
 Realiza um deploy no Heroku
 ```bash
 deploy-dev:
