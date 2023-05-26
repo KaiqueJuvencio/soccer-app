@@ -1,12 +1,10 @@
 package com.br.soccerapp.controller;
 
-import com.br.soccerapp.model.LeagueDTO;
+import com.br.soccerapp.model.entity.League;
 import com.br.soccerapp.service.LeagueService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.ModelAndView;
 
 @RestController
 @RequestMapping("/league")
@@ -27,7 +25,7 @@ public class LeagueController {
     }
 
     @PutMapping()
-    public ResponseEntity<Object> update(@RequestBody LeagueDTO league){
+    public ResponseEntity<Object> update(@RequestBody League league){
         leagueService.update(league);
         return ResponseEntity.ok("");
     }

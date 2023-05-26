@@ -2,13 +2,12 @@ package com.br.soccerapp.service;
 
 import com.br.soccerapp.exception.BadRequestException;
 import com.br.soccerapp.exception.ObjectNullException;
-import com.br.soccerapp.helper.Helper;
-import com.br.soccerapp.model.LeagueDTO;
+import com.br.soccerapp.model.entity.League;
+import com.br.soccerapp.model.entity.Team;
 import com.br.soccerapp.repository.LeagueRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
@@ -19,22 +18,26 @@ public class LeagueService {
     @Autowired
     LeagueRepository leagueRepository;
 
-    public List<LeagueDTO> list(){
+    public List<League> list(){
         return leagueRepository.findAll();
     }
 
-    public LeagueDTO create(String name){
+    public League findById(Long id){
+        return leagueRepository.findById(id).orElseThrow(()-> new ObjectNullException("League not exist"));
+    }
+
+    public League create(String name){
         try{
-            LeagueDTO league = new LeagueDTO(name);
+            League league = new League(name);
             return leagueRepository.save(league);
         }catch (Exception e){
             throw new BadRequestException("Error to create League");
         }
     }
 
-    public void update(LeagueDTO league){
+    public void update(League league){
         try {
-            Optional<LeagueDTO> leagueResponse = leagueRepository.findById(league.getId());
+            Optional<League> leagueResponse = leagueRepository.findById(league.getId());
             this.verifyIsNull(leagueResponse);
             leagueResponse.get().setName(league.getName());
             leagueResponse.get().setStartDate(LocalDateTime.now());
@@ -48,7 +51,7 @@ public class LeagueService {
 
     public void delete(Long id){
         try{
-            Optional<LeagueDTO> league = leagueRepository.findById(id);
+            Optional<League> league = leagueRepository.findById(id);
             this.verifyIsNull(league);
             leagueRepository.deleteById(id);
         }catch (ObjectNullException e){

@@ -2,11 +2,8 @@ package com.br.soccerapp.service;
 
 import com.br.soccerapp.exception.BadRequestException;
 import com.br.soccerapp.exception.ObjectNullException;
-import com.br.soccerapp.helper.Helper;
-import com.br.soccerapp.model.LeagueDTO;
-import com.br.soccerapp.model.PlayerDTO;
-import com.br.soccerapp.model.TeamDTO;
-import com.br.soccerapp.repository.LeagueRepository;
+import com.br.soccerapp.model.entity.Player;
+import com.br.soccerapp.model.entity.Team;
 import com.br.soccerapp.repository.PlayerRepository;
 import com.br.soccerapp.repository.TeamRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,15 +21,15 @@ public class PlayerService {
     @Autowired
     PlayerRepository playerRepository;
 
-    public List<PlayerDTO> list(){
+    public List<Player> list(){
         return playerRepository.findAll();
     }
 
-    public PlayerDTO create(String name, Long teamId){
+    public Player create(String name, Long teamId){
         try{
-            Optional<TeamDTO> team = teamRepository.findById(teamId);
+            Optional<Team> team = teamRepository.findById(teamId);
             this.verifyIsNull(team);
-            PlayerDTO player = new PlayerDTO(name, team.get());
+            Player player = new Player(name, team.get());
             return playerRepository.save(player);
         }catch (ObjectNullException e){
             throw new ObjectNullException("Team not exist");
@@ -43,9 +40,9 @@ public class PlayerService {
 
     public void update(String name, Long playerId, Long teamId){
         try{
-            Optional<PlayerDTO> player = playerRepository.findById(playerId);
+            Optional<Player> player = playerRepository.findById(playerId);
             this.verifyIsNull(player);
-            Optional<TeamDTO> team = teamRepository.findById(teamId);
+            Optional<Team> team = teamRepository.findById(teamId);
             this.verifyIsNull(team);
             player.get().setName(name);
             player.get().setTeam(team.get());
@@ -59,7 +56,7 @@ public class PlayerService {
 
     public void delete(Long id){
         try{
-            Optional<PlayerDTO> player = playerRepository.findById(id);
+            Optional<Player> player = playerRepository.findById(id);
             this.verifyIsNull(player);
             playerRepository.deleteById(id);
         }catch (ObjectNullException e){

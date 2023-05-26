@@ -1,4 +1,4 @@
-package com.br.soccerapp.model;
+package com.br.soccerapp.model.entity;
 
 import lombok.Data;
 
@@ -7,22 +7,22 @@ import javax.persistence.*;
 @Entity
 @Table(name = "GOALS")
 @Data
-public class GoalsDTO {
+public class Goals {
 
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
     private Long id;
     @ManyToOne
     @JoinColumn(name = "match_id")
-    private MatchDTO match;
+    private Match match;
     @ManyToOne
     @JoinColumn(name = "team_id")
-    private TeamDTO team;
+    private Team team;
     @ManyToOne
     @JoinColumn(name = "player_id")
-    private PlayerDTO player;
+    private Player player;
     private Integer quantities;
 
-    public GoalsDTO() {
+    public Goals() {
     }
 }

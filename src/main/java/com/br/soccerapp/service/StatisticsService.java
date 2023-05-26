@@ -2,15 +2,13 @@ package com.br.soccerapp.service;
 
 import com.br.soccerapp.exception.BadRequestException;
 import com.br.soccerapp.exception.ObjectNullException;
-import com.br.soccerapp.model.LeagueDTO;
-import com.br.soccerapp.model.StatisticsDTO;
-import com.br.soccerapp.model.TeamDTO;
+import com.br.soccerapp.model.entity.Statistics;
+import com.br.soccerapp.model.entity.Team;
 import com.br.soccerapp.repository.LeagueRepository;
 import com.br.soccerapp.repository.StatisticsRepository;
 import com.br.soccerapp.repository.TeamRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.PathVariable;
 
 import java.util.List;
 import java.util.Optional;
@@ -27,15 +25,15 @@ public class StatisticsService {
     @Autowired
     TeamRepository teamRepository;
 
-    public List<StatisticsDTO> list(){
+    public List<Statistics> list(){
         return statisticsRepository.findAll();
     }
 
-    public StatisticsDTO create(Long teamId){
+    public Statistics create(Long teamId){
         try{
-            Optional<TeamDTO> team = teamRepository.findById(teamId);
+            Optional<Team> team = teamRepository.findById(teamId);
             this.verifyIsNull(team);
-            StatisticsDTO statisticsDTO = new StatisticsDTO(team.get());
+            Statistics statisticsDTO = new Statistics(team.get());
             return statisticsRepository.save(statisticsDTO);
         }catch (ObjectNullException e){
             throw new ObjectNullException("Team not exist");
@@ -44,11 +42,11 @@ public class StatisticsService {
         }
     }
 
-    public StatisticsDTO update(Long teamId, String statisticEnum){
+    public Statistics update(Long teamId, String statisticEnum){
         try {
-            Optional<TeamDTO> team = teamRepository.findById(teamId);
+            Optional<Team> team = teamRepository.findById(teamId);
             this.verifyIsNull(team);
-            Optional<StatisticsDTO> statistic = statisticsRepository.findByTeam(team.get());
+            Optional<Statistics> statistic = statisticsRepository.findByTeam(team.get());
             this.verifyIsNull(statistic);
             statistic.get().setMatchesQuantities(statistic.get().getMatchesQuantities() + 1);
             switch (statisticEnum) {
@@ -74,7 +72,7 @@ public class StatisticsService {
 
     public void delete(Long id){
         try{
-            Optional<StatisticsDTO> statistic = statisticsRepository.findById(id);
+            Optional<Statistics> statistic = statisticsRepository.findById(id);
             this.verifyIsNull(statistic);
             statisticsRepository.deleteById(id);
         }catch (ObjectNullException e){

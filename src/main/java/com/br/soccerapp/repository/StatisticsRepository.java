@@ -1,14 +1,13 @@
 package com.br.soccerapp.repository;
 
-import com.br.soccerapp.model.PlayerDTO;
-import com.br.soccerapp.model.StatisticsDTO;
-import com.br.soccerapp.model.TeamDTO;
+import com.br.soccerapp.model.entity.Statistics;
+import com.br.soccerapp.model.entity.Team;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 import java.util.Optional;
 
 @Repository
-public interface StatisticsRepository extends JpaRepository<StatisticsDTO, Long> {
-    public Optional<StatisticsDTO> findByTeam(TeamDTO team);
+public interface StatisticsRepository extends JpaRepository<Statistics, Long> {
+    public Optional<Statistics> findByTeam(Team team);
 }

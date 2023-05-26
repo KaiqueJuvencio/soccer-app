@@ -1,4 +1,4 @@
-package com.br.soccerapp.model;
+package com.br.soccerapp.model.entity;
 
 import lombok.Data;
 
@@ -7,7 +7,7 @@ import javax.persistence.*;
 @Entity
 @Table(name = "TEAM")
 @Data
-public class TeamDTO {
+public class Team {
 
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
@@ -15,13 +15,16 @@ public class TeamDTO {
     private String name;
     @ManyToOne
     @JoinColumn(name = "league_id")
-    private LeagueDTO league;
+    private League league;
 
-    public TeamDTO(String name, LeagueDTO league) {
+    @Column(name = "league_id", insertable = false, updatable = false)
+    private Long leagueId;
+
+    public Team(String name, League league) {
         this.name = name;
         this.league = league;
     }
 
-    public TeamDTO() {
+    public Team() {
     }
 }
