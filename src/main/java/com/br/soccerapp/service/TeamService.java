@@ -26,10 +26,9 @@ public class TeamService {
         return teamRepository.findById(id).orElseThrow(()-> new ObjectNullException("Team not exist"));
     }
 
-    public Team create(String name, Long leagueId){
+    public void create(String name, Long leagueId){
         League league = leagueService.findById(leagueId);
-        Team teamDTO = new Team(name, league);
-        return teamRepository.save(teamDTO);
+        teamRepository.save(new Team(name, league));
     }
 
     public void update(String name, Long teamId){
@@ -38,7 +37,7 @@ public class TeamService {
         teamRepository.save(team);
     }
 
-    public void delete(Long id) throws ObjectNullException{
+    public void delete(Long id){
         this.findById(id);
         teamRepository.deleteById(id);
     }
