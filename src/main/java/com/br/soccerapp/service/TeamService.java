@@ -1,6 +1,7 @@
 package com.br.soccerapp.service;
 
 import com.br.soccerapp.exception.ObjectNullException;
+import com.br.soccerapp.model.dto.TeamDTO;
 import com.br.soccerapp.model.entity.League;
 import com.br.soccerapp.model.entity.Team;
 import com.br.soccerapp.repository.TeamRepository;
@@ -8,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class TeamService {
@@ -18,8 +20,10 @@ public class TeamService {
     @Autowired
     LeagueService leagueService;
 
-    public List<Team> list(){
-        return teamRepository.findAll();
+    public List<TeamDTO> list(){
+        return teamRepository.findAll().stream()
+                .map(Team::toDTO)
+                .collect(Collectors.toList());
     }
 
     public Team findById(Long id){

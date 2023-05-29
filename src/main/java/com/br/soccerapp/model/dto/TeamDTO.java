@@ -11,7 +11,8 @@ public class TeamDTO {
 
     private Long leagueId;
 
-    public TeamDTO(String name, Long leagueId) {
+    public TeamDTO(Long id, String name, Long leagueId) {
+        this.id = id;
         this.name = name;
         this.leagueId = leagueId;
     }

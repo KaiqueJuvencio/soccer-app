@@ -13,7 +13,6 @@ public class Statistics {
     @GeneratedValue(strategy= GenerationType.AUTO)
     private Long id;
     @ManyToOne
-    @OneToOne
     private Team team;
     private Integer victories;
     private Integer defeats;

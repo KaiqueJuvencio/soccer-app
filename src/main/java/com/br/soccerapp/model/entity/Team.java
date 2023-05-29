@@ -1,5 +1,6 @@
 package com.br.soccerapp.model.entity;
 
+import com.br.soccerapp.model.dto.TeamDTO;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -26,5 +27,9 @@ public class Team {
     }
 
     public Team() {
+    }
+
+    public static TeamDTO toDTO(Team team){
+        return new TeamDTO(team.getId(), team.getName(), team.getLeagueId());
     }
 }

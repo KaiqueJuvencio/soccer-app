@@ -1,5 +1,6 @@
 package com.br.soccerapp.controller;
 
+import com.br.soccerapp.model.dto.TeamDTO;
 import com.br.soccerapp.model.entity.Team;
 import com.br.soccerapp.service.TeamService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,7 +17,7 @@ public class TeamController {
     TeamService teamService;
 
     @GetMapping()
-    public ResponseEntity<List<Team>> list(){
+    public ResponseEntity<List<TeamDTO>> list(){
         return ResponseEntity.ok(teamService.list());
     }
 
