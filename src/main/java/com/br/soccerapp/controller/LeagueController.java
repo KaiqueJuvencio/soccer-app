@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/league")
 public class LeagueController {
@@ -14,25 +16,25 @@ public class LeagueController {
     LeagueService leagueService;
 
     @GetMapping()
-    public ResponseEntity<Object> list(){
+    public ResponseEntity<List<League>> list(){
         return ResponseEntity.ok(leagueService.list());
     }
 
     @PostMapping("/{name}")
-    public ResponseEntity<Object> create(@PathVariable String name){
+    public ResponseEntity<Void> create(@PathVariable String name){
         leagueService.create(name);
-        return ResponseEntity.ok("");
+        return ResponseEntity.noContent().build();
     }
 
     @PutMapping()
-    public ResponseEntity<Object> update(@RequestBody League league){
+    public ResponseEntity<Void> update(@RequestBody League league){
         leagueService.update(league);
-        return ResponseEntity.ok("");
+        return ResponseEntity.noContent().build();
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Object> delete(@PathVariable Long id){
+    public ResponseEntity<Void> delete(@PathVariable Long id){
         leagueService.delete(id);
-        return ResponseEntity.ok("");
+        return ResponseEntity.noContent().build();
     }
 }

@@ -1,10 +1,12 @@
 package com.br.soccerapp.controller;
 
+import com.br.soccerapp.model.entity.Player;
 import com.br.soccerapp.service.PlayerService;
-import com.br.soccerapp.service.TeamService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/player")
@@ -14,25 +16,25 @@ public class PlayerController {
     PlayerService playerService;
 
     @GetMapping()
-    public ResponseEntity<Object> list(){
+    public ResponseEntity<List<Player>> list(){
         return ResponseEntity.ok(playerService.list());
     }
 
     @PostMapping()
-    public ResponseEntity<Object> create(@RequestParam String playerName, @RequestParam Long teamId){
+    public ResponseEntity<Void> create(@RequestParam String playerName, @RequestParam Long teamId){
         playerService.create(playerName, teamId);
-        return ResponseEntity.ok("");
+        return ResponseEntity.noContent().build();
     }
 
     @PutMapping("/{name}/{playerId}/{teamId}")
-    public ResponseEntity<Object> update(@PathVariable String name, @PathVariable Long playerId, @PathVariable Long teamId){
+    public ResponseEntity<Void> update(@PathVariable String name, @PathVariable Long playerId, @PathVariable Long teamId){
         playerService.update(name, playerId, teamId);
-        return ResponseEntity.ok("");
+        return ResponseEntity.noContent().build();
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Object> delete(@PathVariable Long id){
+    public ResponseEntity<Void> delete(@PathVariable Long id){
         playerService.delete(id);
-        return ResponseEntity.ok("");
+        return ResponseEntity.noContent().build();
     }
 }
