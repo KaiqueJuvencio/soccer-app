@@ -16,7 +16,7 @@ public class Goals {
     @JoinColumn(name = "match_id")
     private Match match;
     @ManyToOne
-    @JoinColumn(name = "team_id")
+    @JoinColumn(name = "goals_team_id")
     private Team team;
     @ManyToOne
     @JoinColumn(name = "player_id")

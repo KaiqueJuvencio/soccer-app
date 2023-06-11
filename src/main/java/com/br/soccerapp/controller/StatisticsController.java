@@ -1,5 +1,6 @@
 package com.br.soccerapp.controller;
 
+import com.br.soccerapp.model.dto.StatisticsDTO;
 import com.br.soccerapp.model.entity.Statistics;
 import com.br.soccerapp.service.StatisticsService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,7 +17,7 @@ public class StatisticsController {
     StatisticsService statisticsService;
 
     @GetMapping()
-    public ResponseEntity<List<Statistics>> list(){
+    public ResponseEntity<List<StatisticsDTO>> list(){
         return ResponseEntity.ok(statisticsService.list());
     }
 
