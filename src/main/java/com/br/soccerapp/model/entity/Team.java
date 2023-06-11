@@ -30,6 +30,6 @@ public class Team {
     }
 
     public static TeamDTO toDTO(Team team){
-        return new TeamDTO(team.getId(), team.getName(), team.getLeagueId());
+        return new TeamDTO(team);
     }
 }

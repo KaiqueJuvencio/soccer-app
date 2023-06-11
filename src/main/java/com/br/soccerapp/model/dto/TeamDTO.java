@@ -1,6 +1,7 @@
 package com.br.soccerapp.model.dto;
 
 import com.br.soccerapp.model.entity.League;
+import com.br.soccerapp.model.entity.Team;
 import lombok.Data;
 
 @Data
@@ -11,10 +12,10 @@ public class TeamDTO {
 
     private Long leagueId;
 
-    public TeamDTO(Long id, String name, Long leagueId) {
-        this.id = id;
-        this.name = name;
-        this.leagueId = leagueId;
+    public TeamDTO(Team team) {
+        this.id = team.getId();
+        this.name = team.getName();
+        this.leagueId = team.getLeagueId();
     }
 
     public TeamDTO() {

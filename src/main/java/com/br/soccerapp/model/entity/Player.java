@@ -1,5 +1,6 @@
 package com.br.soccerapp.model.entity;
 
+import com.br.soccerapp.model.dto.PlayerDTO;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -14,7 +15,7 @@ public class Player {
     private Long id;
     private String name;
     @OneToOne
-    @JoinColumn(name = "team_id")
+    @JoinColumn(name = "player_team_id")
     private Team team;
 
     public Player() {
@@ -23,5 +24,9 @@ public class Player {
     public Player(String name, Team team) {
         this.name = name;
         this.team = team;
+    }
+
+    public static PlayerDTO toDTO(Player player){
+        return new PlayerDTO(player);
     }
 }
